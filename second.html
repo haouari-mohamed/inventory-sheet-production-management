@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche Inventaire de Production</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js"></script>
+    <style>
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 4px;
+            border: 1px solid #ddd;
+            margin: 2px 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            font-size: 12px;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .header-info {
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body x-data="inventoryApp()">
+    <div class="header-info">
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <strong>LIBELLE:</strong>
+                <input type="text" x-model="projectInfo.libelle" placeholder="Enter Project Title">
+            </div>
+            <div>
+                <strong>POLE:</strong>
+                <input type="text" x-model="projectInfo.pole" placeholder="Enter Department">
+            </div>
+            <div>
+                <strong>CLIENT:</strong>
+                <input type="text" x-model="projectInfo.client" placeholder="Enter Client">
+            </div>
+            <div>
+                <strong>DIVISION:</strong>
+                <input type="text" x-model="projectInfo.division" placeholder="Enter Division">
+            </div>
+            <div>
+                <strong>CHEF DE PROJET:</strong>
+                <input type="text" x-model="projectInfo.chefDeProjet" placeholder="Enter Project Manager">
+            </div>
+            <div>
+                <strong>CODE:</strong>
+                <input type="text" x-model="projectInfo.code" placeholder="Enter Project Code">
+            </div>
+            <div>
+                <strong>MARCHE N°:</strong>
+                <input type="text" x-model="projectInfo.marcheNumero" placeholder="Enter Market Number">
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">(1)</th>
+                    <th rowspan="2">LIBELLE</th>
+                    <th rowspan="2">PRIX MISSION <br> PRIX GLOBAL TTC</th>
+                    <th colspan="3">PART CID</th>
+                    <th colspan="3">SOUS TRAITANCE</th>
+                    <th rowspan="2">MISS. N'AYANT PAS <br> FAIT L'OBJET</th>
+                    <th colspan="2">FACTURATION</th>
+                    <th colspan="2">ENCAISSEMENTS</th>
+                    <th rowspan="2">PART DIV CLIENT</th>
+                    <th rowspan="2">RESTE A ENGAGER</th>
+                    <th rowspan="2">BUDGET MARCHE PART DIV <br> TTC 31/12/2015</th>
+                    <th rowspan="2">PRODUCTION CUMULEE <br> AU 31/12/2014</th>
+                    <th rowspan="2">SOUS TRAITANCE CUMULEE <br> AU 31/12/2014</th>
+                    <th rowspan="2">FACTURATION CUMULEE <br> AU 31/12/2014</th>
+                    <th rowspan="2">ENCAISSEMENT CUMULE <br> AU 31/12/2014</th>
+                </tr>
+                <tr>
+                    <th>PX ,UNITAIRE</th>
+                    <th>Qt</th>
+                    <th>TOTAL</th>
+                    <th>PX ,UNITAIRE</th>
+                    <th>Qt</th>
+                    <th>TOTAL</th>
+                    <th>Qt</th>
+                    <th>TOTAL</th>
+                    <th>Qt</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template x-for="(item, index) in tableData" :key="index">
+                    <tr>
+                        <td>(2)</td>
+                        <td>
+                            <input type="text" x-model="item.libelle" placeholder="Enter Libelle">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.prixMission" step="0.01" placeholder="Prix Mission">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.partCidPxUnitaire" step="0.01" placeholder="PX Unitaire">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.partCidQt" placeholder="Quantity">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.partCidTotal" step="0.01" placeholder="Total">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.sousTranchePxUnitaire" step="0.01" placeholder="PX Unitaire">
+                        </td>
+                        <td>
+                            <input type="text" x-model="item.sousTrancheQt" placeholder="Quantity">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.sousTranceTotal" step="0.01" placeholder="Total">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.missNAyantPasFaitObjet" step="0.01" placeholder="Mission">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.facturationQt" placeholder="Quantity">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.facturationTotal" step="0.01" placeholder="Total">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.encaissementsQt" placeholder="Quantity">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.encaissementsTotal" step="0.01" placeholder="Total">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.partDivClient" step="0.01" placeholder="Part Div Client">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.resteAEngager" step="0.01" placeholder="Reste">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.budgetMarchePartDiv" step="0.01" placeholder="Budget">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.productionCumulee" step="0.01" placeholder="Production">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.sousTrancheCumulee" step="0.01" placeholder="Sous Traitance">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.facturationCumulee" step="0.01" placeholder="Facturation">
+                        </td>
+                        <td>
+                            <input type="number" x-model="item.encaissementCumule" step="0.01" placeholder="Encaissement">
+                        </td>
+                    </tr>
+                </template>
+                <tr>
+                    <td colspan="2">TOTAL</td>
+                    <td x-text="calculateTotal('prixMission')"></td>
+                    <td x-text="calculateTotal('partCidPxUnitaire')"></td>
+                    <td></td>
+                    <td x-text="calculateTotal('partCidTotal')"></td>
+                    <td x-text="calculateTotal('sousTranchePxUnitaire')"></td>
+                    <td></td>
+                    <td x-text="calculateTotal('sousTranceTotal')"></td>
+                    <td x-text="calculateTotal('missNAyantPasFaitObjet')"></td>
+                    <td></td>
+                    <td x-text="calculateTotal('facturationTotal')"></td>
+                    <td></td>
+                    <td x-text="calculateTotal('encaissementsTotal')"></td>
+                    <td x-text="calculateTotal('partDivClient')"></td>
+                    <td x-text="calculateTotal('resteAEngager')"></td>
+                    <td x-text="calculateTotal('budgetMarchePartDiv')"></td>
+                    <td x-text="calculateTotal('productionCumulee')"></td>
+                    <td x-text="calculateTotal('sousTrancheCumulee')"></td>
+                    <td x-text="calculateTotal('facturationCumulee')"></td>
+                    <td x-text="calculateTotal('encaissementCumule')"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function inventoryApp() {
+            return {
+                projectInfo: {
+                    libelle: "ETUDE DE TRAFIC ET DE RENTABILITE ECONOMIQUE ET FINANCIERE: LOT 2 AR RELIANT LA PARTIE TERMINALE DE AR FES-OUJDA A AR EST-OUEST ALGERIENNE",
+                    pole: "TR",
+                    client: "ADM",
+                    division: "ETR",
+                    chefDeProjet: "Chef de projet",
+                    code: "201401401",
+                    marcheNumero: "302/14/S"
+                },
+                tableData: [
+                    {
+                        libelle: "ETUDE DE TRAFIC",
+                        prixMission: 420000.00,
+                        partCidPxUnitaire: 420000.00,
+                        partCidQt: 1,
+                        partCidTotal: 420000.00,
+                        sousTranchePxUnitaire: 57123.36,
+                        sousTrancheQt: "JLR",
+                        sousTranceTotal: 210000.00,
+                        missNAyantPasFaitObjet: 42000.00,
+                        facturationQt: 1,
+                        facturationTotal: 168000.00,
+                        encaissementsQt: 1,
+                        encaissementsTotal: 210000.00,
+                        partDivClient: 210000.00,
+                        resteAEngager: 210000.00,
+                        budgetMarchePartDiv: 0,
+                        productionCumulee: 0,
+                        sousTrancheCumulee: 0,
+                        facturationCumulee: 0,
+                        encaissementCumule: 0
+                    },
+                    {
+                        libelle: "ETUDE DE RENTABILITE ECONOMIQUE ET FINANCIERE",
+                        prixMission: 120000.00,
+                        partCidPxUnitaire: 120000.00,
+                        partCidQt: 1,
+                        partCidTotal: 120000.00,
+                        sousTranchePxUnitaire: 60000.00,
+                        sousTrancheQt: "",
+                        sousTranceTotal: 12000.00,
+                        missNAyantPasFaitObjet: 48000.00,
+                        facturationQt: 1,
+                        facturationTotal: 60000.00,
+                        encaissementsQt: 1,
+                        encaissementsTotal: 60000.00,
+                        partDivClient: 60000.00,
+                        resteAEngager: 60000.00,
+                        budgetMarchePartDiv: 0,
+                        productionCumulee: 0,
+                        sousTrancheCumulee: 0,
+                        facturationCumulee: 0,
+                        encaissementCumule: 0
+                    }
+                ],
+                calculateTotal(field) {
+                    return this.tableData.reduce((sum, item) => {
+                        const value = parseFloat(item[field]) || 0;
+                        return sum + value;
+                    }, 0).toLocaleString('fr-FR', {
+                        minimumFractionDigits: 2, 
+                        maximumFractionDigits: 2
+                    });
+                }
+            };
+        }
+    </script>
+</body>
+</html>
