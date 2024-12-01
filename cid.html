@@ -10,10 +10,12 @@
             line-height: 1.6;
         }
         .table-container {
+          
             width: 100%;
             overflow-x: auto;
         }
         table {
+            
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
@@ -25,6 +27,8 @@
             font-size: 12px;
         }
         th {
+            text-align: center;
+            justify-content: center;
             background-color: #f2f2f2;
             font-weight: bold;
             white-space: nowrap;
@@ -49,33 +53,42 @@
         <table>
             <thead>
                 <tr>
-                    <th rowspan="2">(1)</th>
-                    <th rowspan="2">LIBELLE</th>
-                    <th rowspan="2">PRIX MISSION <br> PRIX GLOBAL TTC</th>
+                    <th rowspan="2">PRIX <br> N°</th>
+                    <th rowspan="2">MISSION</th>
+                    <th rowspan="2"> PRIX GLOBAL TTC</th>
                     <th colspan="3">PART CID</th>
-                    <th colspan="3">SOUS TRAITANCE</th>
-                    <th rowspan="2">MISS. N'AYANT PAS <br> FAIT L'OBJET</th>
+                    <th colspan="2">SOUS TRAITANCE</th>
+                    <th colspan="2" >MISS. N'AYANT PAS  FAIT L'OBJET <br> DE LA REMISE D'1 RAPPORT</th>
+                    <th rowspan="2" >MISS. N'AYANT <br>PAS FAIT <br>L'OBJECT DE LA <br>REMISE D'1 <br>RAPPORT</th>
+                    <th rowspan="2" >TOTAL </th>
+                    <th rowspan="2" >MISS. NON <br>ENTAMEES </th>
+                    <th rowspan="2" >VALEUR  <br>S.TRAITANCE CONSOMMEE </th>
                     <th colspan="2">FACTURATION</th>
                     <th colspan="2">ENCAISSEMENTS</th>
-                    <th rowspan="2">PART DIV CLIENT</th>
-                    <th rowspan="2">RESTE A ENGAGER</th>
-                    <th rowspan="2">BUDGET MARCHE PART DIV <br> TTC 31/12/2015</th>
+                    <th rowspan="2">COMPTE <br> CLIENT</th>
+                    <th rowspan="2">CARNET <br>DE <br>COMMANDE</th>
+                    <th colspan="3">PART DIV</th>
                     <th rowspan="2">PRODUCTION CUMULEE <br> AU 31/12/2014</th>
                     <th rowspan="2">SOUS TRAITANCE CUMULEE <br> AU 31/12/2014</th>
                     <th rowspan="2">FACTURATION CUMULEE <br> AU 31/12/2014</th>
                     <th rowspan="2">ENCAISSEMENT CUMULE <br> AU 31/12/2014</th>
+                    <th rowspan="2">BUDGET MARCHE PART DIV <br> TTC 31/12/2015</th>
                 </tr>
                 <tr>
-                    <th>PX ,UNITAIRE</th>
+                    <th>PX ,UNITAIRE <br> CID</th>
+                    <th>Qt</th>
+                    <th>TOTAL <br>CID</th>
+                    <th>VAL. GLOBALE</th>
+                    <th>S. TRAITANT</th>
+                    <th>TOTAL MISS.</th>
+                    <th>RESTE A ENGAGER <br>POUR RAPP. DEF.</th>
                     <th>Qt</th>
                     <th>TOTAL</th>
-                    <th>PX ,UNITAIRE</th>
                     <th>Qt</th>
                     <th>TOTAL</th>
+                    <th>PX ,UNITAIRE <br> CID</th>
                     <th>Qt</th>
-                    <th>TOTAL</th>
-                    <th>Qt</th>
-                    <th>TOTAL</th>
+                    <th>TOTAL <br>CID</th>
                 </tr>
             </thead>
             <tbody>
@@ -101,10 +114,18 @@
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    
                 </tr>
                 <tr>
                     <td>(3)</td>
-                    <td>ETUDE DE RENTABILITE ECONOMIQUE ET FINANCIERE</td>
+                    <td>ETUDE DE RENTABILITE ECONMIQUE ET FINANCIERE</td>
                     <td>120 000,00</td>
                     <td>120 000,00</td>
                     <td>1</td>
@@ -118,6 +139,14 @@
                     <td>1</td>
                     <td>60 000,00</td>
                     <td>60 000,00</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
@@ -144,6 +173,15 @@
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                   
                 </tr>
             </tbody>
         </table>
